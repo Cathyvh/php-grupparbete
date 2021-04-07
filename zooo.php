@@ -8,12 +8,17 @@
      <title>Document</title>
  </head>
  <body>
-      <div>
-      <table>
- <?php
-        $pdo = new PDO('mysql:host=localhost;dbname=zoo', zooAdmin, 12345);
-        $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
-      
+<?php
+$pdo = new PDO('mysql:host=localhost;dbname=zoo', zooAdmin, 12345);
+
+?>
+
+<form  action="search.php" method="post">
+<input type="text" name="search" placeholder="Search">
+<button type="submit" name="submit">Search</button>
+</form>
+<table>
+<?php      
         $stmt  =$pdo->query('SELECT * FROM animals');
         ?>
             <tr>
@@ -36,6 +41,7 @@
         ?>
         </div>
         </table>
+
  </body>
  </html>
  
