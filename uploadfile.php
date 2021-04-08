@@ -5,18 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Filuppladdning</title>
+    <link rel="stylesheet" href="style.css"> 
 </head>
 <body>
      <form action="zooo.php" method= "POST" enctype = "multipart/form-data">
-     <p> The file has uploaded</p>
+     <h2> The file has been uploaded</h2>
      <button  name="New" >New Upload</button>
     </form>
-</body>
 
-</html>
-
-
-<?php
+<div class="upload">
+   <?php
   $pdo = new PDO('mysql:host=localhost;dbname=zoo', zooAdmin, 12345);
 
 
@@ -33,3 +31,10 @@
 
 }
 ?>
+
+</div>
+</body>
+
+</html>
+
+

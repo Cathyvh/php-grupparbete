@@ -5,16 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css"> 
 </head>
 <body>
      <form action="zooo.php">
       <button  name="Back" >Go back</button>
     </form>
-</body>
 
-</html>
-
-  <?php
+<div class="search-result">
+ <?php
   $pdo = new PDO('mysql:host=localhost;dbname=zoo', zooAdmin, 12345);
 
 
@@ -47,9 +46,18 @@
           }
         }
       }else {
-          echo "Could not find any results..";
+          echo "<h2>Could not find any results..</h2>";
              }
 
 }
 
 ?>
+
+</div>
+
+
+</body>
+
+</html>
+
+ 

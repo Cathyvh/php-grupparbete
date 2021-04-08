@@ -6,6 +6,7 @@
      <meta http-equiv="X-UA-Compatible" content="IE=edge">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <title>Document</title>
+    <link rel="stylesheet" href="style.css"> 
  </head>
  <body>
 <?php
@@ -17,7 +18,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=zoo', zooAdmin, 12345);
 <input type="text" name="search" placeholder="Search">
 <button type="submit" name="submit">Search</button>
 </form>
-<table>
+<table >
 <?php      
         $stmt  =$pdo->query('SELECT * FROM animals');
         ?>
@@ -43,7 +44,8 @@ $pdo = new PDO('mysql:host=localhost;dbname=zoo', zooAdmin, 12345);
         
         <form action="uploadfile.php" method= "POST" enctype = "multipart/form-data">
      <p><input type="file" name="file"/></p>
-     <p><input type="submit" name= "upload" value="Upload"></p>
+     <p><button name= "upload" >Upload</button></p>
+     
 
     
     </form>
