@@ -40,6 +40,13 @@ $pdo = new PDO('mysql:host=localhost;dbname=zoo', zooAdmin, 12345);
         }
         ?>
         </div>
+        
+        <form action="uploadfile.php" method= "POST" enctype = "multipart/form-data">
+     <p><input type="file" name="file"/></p>
+     <p><input type="submit" name= "upload" value="Upload"></p>
+
+    
+    </form>
         </table>
 
  </body>
