@@ -8,53 +8,46 @@
     <link rel="stylesheet" href="style.css"> 
 </head>
 <body>
-     <form action="zooo.php">
-      <button  name="Back" >Go back</button>
-    </form>
+  <form action="zooo.php">
+    <button  name="Back" >Go back</button>
+  </form>
 
-<div class="search-result">
- <?php
-  $pdo = new PDO('mysql:host=localhost;dbname=zoo', zooAdmin, 12345);
+  <div class="search-result">
+  <?php
+    $pdo = new PDO('mysql:host=localhost;dbname=zoo', zooAdmin, 12345);
+    if (isset($_POST['submit'])) {
+    ?>
+        <table >
+          <th>ID</th>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Birthday</th>
+          <?php
+          $search = $_POST['search'];
+          $query = ("SELECT * FROM `animals` WHERE (`id` LIKE '%$search%') OR (`name` LIKE '%$search%') 
+            OR (`category` LIKE '%$search%') OR (`birthday` LIKE '%$search%')");
+          $statement = $pdo->prepare($query,array(PDO::FETCH_ASSOC));
+          $statement->execute();
+          $result = $statement->fetchAll();
 
-
-  if (isset($_POST['submit'])) {
-  ?>
-   
-      <table >
-        <th>ID</th>
-        <th>Name</th>
-        <th>Category</th>
-        <th>Birthday</th>
-        <?php
-        $search = $_POST['search'];
-        $query = ("SELECT * FROM `animals` WHERE (`id` LIKE '%$search%') OR (`name` LIKE '%$search%') OR (`category` LIKE '%$search%') OR (`birthday` LIKE '%$search%')");
-        $statement = $pdo->prepare($query,array(PDO::FETCH_ASSOC));
-        $statement->execute();
-
-        $result = $statement->fetchAll();
-
-        if (count($result) > 0) {
-           foreach ($result as $row){ {
-        echo "<div>
-            <tr>
-                <td>  ".$row['id']." </td>
-                <td>  ".$row['name']." </td>
-                <td>  ".$row['category']." </td>
-                <td> ".$row['birthday']." </td>
-            </tr>
-        </div>";
+          if (count($result) > 0) {
+            foreach ($result as $row){ {
+                echo "<div>
+                        <tr>
+                            <td>  ".$row['id']." </td>
+                            <td>  ".$row['name']." </td>
+                            <td>  ".$row['category']." </td>
+                            <td> ".$row['birthday']." </td>
+                        </tr>
+                    </div>";
+            }
           }
-        }
-      }else {
-          echo "<h2>Could not find any results..</h2>";
-             }
-
-}
-
-?>
-
-</div>
-
+          }else {
+            echo "<h2>Could not find any results..</h2>";
+              }
+      }
+  ?>
+  </div>
 
 </body>
 
