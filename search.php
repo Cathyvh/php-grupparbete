@@ -8,13 +8,14 @@
     <link rel="stylesheet" href="style.css"> 
 </head>
 <body>
-  <form action="zooo.php">
+  <form action="index.php">
     <button  name="Back" >Go back</button>
   </form>
 
   <div class="search-result">
   <?php
     $pdo = new PDO('mysql:host=localhost;dbname=zoo', zooAdmin, 12345);
+
     if (isset($_POST['submit'])) {
     ?>
         <table >
@@ -24,8 +25,9 @@
           <th>Birthday</th>
           <?php
           $search = $_POST['search'];
-          $query = ("SELECT * FROM `animals` WHERE (`id` LIKE '%$search%') OR (`name` LIKE '%$search%') 
-            OR (`category` LIKE '%$search%') OR (`birthday` LIKE '%$search%')");
+          $searchCat = $_POST['category'];
+          $query = ("SELECT * FROM `animals` WHERE (`id` LIKE '%$search%') AND  (`category` LIKE '%$searchCat%') OR (`name` LIKE '%$search%') AND  (`category` LIKE '%$searchCat%')
+           OR (`birthday` LIKE '%$search%') AND  (`category` LIKE '%$searchCat%')");
           $searchStmt = $pdo->prepare($query,array(PDO::FETCH_ASSOC));
           $searchStmt->execute();
           $result = $searchStmt->fetchAll();

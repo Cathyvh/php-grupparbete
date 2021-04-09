@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="style.css"> 
 </head>
 <body>
-     <form action="zooo.php" method= "POST" enctype = "multipart/form-data">
+     <form action="index.php" method= "POST" enctype = "multipart/form-data">
      <h2> The file has been uploaded</h2>
      <button  name="New" >New Upload</button>
     </form>

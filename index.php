@@ -11,15 +11,28 @@
  <body>
     <?php
     $pdo = new PDO('mysql:host=localhost;dbname=zoo', zooAdmin, 12345);
+    $catQuery = "SELECT category FROM animals GROUP BY category";
+    $categories = $pdo->query($catQuery);
     ?>
 
     <form  action="search.php" method="post">
+            <select name="category">
+            <option value="">All</option>
+            <?php
+            foreach ($categories as $category) {
+              echo "<option value='" . $category['category'] . "'>" . $category['category'] . "</option>";
+            }
+            ?>
+        </select>
         <input type="text" name="search" placeholder="Search">
         <button type="submit" name="submit">Search</button>
+
     </form>
     <table>
 <?php      
     $stmt  =$pdo->query('SELECT * FROM animals');
+
+
     ?>
         <tr>
             <th>ID</th>
