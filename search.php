@@ -26,9 +26,9 @@
           $search = $_POST['search'];
           $query = ("SELECT * FROM `animals` WHERE (`id` LIKE '%$search%') OR (`name` LIKE '%$search%') 
             OR (`category` LIKE '%$search%') OR (`birthday` LIKE '%$search%')");
-          $statement = $pdo->prepare($query,array(PDO::FETCH_ASSOC));
-          $statement->execute();
-          $result = $statement->fetchAll();
+          $searchStmt = $pdo->prepare($query,array(PDO::FETCH_ASSOC));
+          $searchStmt->execute();
+          $result = $searchStmt->fetchAll();
 
           if (count($result) > 0) {
             foreach ($result as $row){ {
